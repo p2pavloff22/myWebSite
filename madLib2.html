@@ -1,0 +1,85 @@
+<html>
+<head> 
+<script language="JavaScript">
+
+var partsOfSpeech = ["Enter a boy's name", "Enter a verb", "Enter a verb", "Enter a verb", "Enter a verb", "Enter a noun", "Enter a verb", "Enter a noun", "Enter a noun", "Enter a verb", "Enter a city", "Enter an adjective"];
+    
+var answers = ["word 1", "word 2", "word 3", "word 4", "word 5", "word 6", "word 7", "word 8", "word 9", "word 10", "word 11", "word 12"];
+    
+var story = [" Once upon a time there was a man named ", ". He was always marked as “different” because he was constantly ", ". Everyone thought he would ", " because of his ", ". However, his plan was to ", " to save the ", ". He eventually acheived his goal of ", ". He was seen as a ", " by the ", ". He furthered his journey by ", ". He lived out his final days in ", ". His life was nothing short of "];
+    
+var count = 0;
+
+function prompt()
+{
+    if (count == 0)
+    {
+        var txtBox = document.getElementById("userEnter");
+        txtBox.style.visibility = "visible";
+    }
+    document.getElementById("response").value = partsOfSpeech[count];
+
+}
+
+
+function getWords()
+{
+    var wordBox = document.getElementById("response");
+    answers[count] = wordBox.value
+    
+    count++; // increment count
+    
+    // test if there is another part of speech.
+    if(count < partsOfSpeech.length)
+    {
+        prompt();
+    }
+    else // all elements have been added, so display story.
+    {
+        count = 0;
+        document.getElementById("story").innerHTML = displayStory();
+    }
+}
+
+function displayStory()
+{
+	var answer = "";
+	var i;
+	
+	// loop to stitch elements of story with elements of answers. 
+	
+	for ( i = 0; i < answers.length; i++)
+    {
+        answer = answer + story[i];
+        answer = answer + answers[i];
+	}
+    
+	// if there's one more element in story than answers, then add the last element of answers
+    
+
+    document.getElementById("userEnter").style.visibility = "hidden";
+    document.getElementById("story").style.visibility = "visible";
+    
+	// return the variable answer.
+    
+    return answer;
+}
+
+</script>
+</head>
+<body>
+<center> 
+<h1>My MadLib!</h1>
+    <p> Click <a href = "index.html">here</a> to return to my homepage. </p>
+<input id="daButton" type="button" value="start" onClick="prompt()"/>
+</center>
+<div id="userEnter" style="position:absolute; left:200; top: 100; visibility:hidden;">
+<input type = "text" id="response" value="" onfocusout="getWords()"/></p>
+</div>
+
+<div id="story" style="position:absolute; overflow:scroll; top:300; left:200; width:400; height: 200; visibility:hidden">
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+<div>
+
+</body>
+</html>
