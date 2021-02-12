@@ -1,0 +1,114 @@
+<html> 
+<head> 
+<script language="JavaScript">
+
+/*************** Algorithm ******************
+1. Create two arrays: questions and answers
+2. Use docucment.getElementById to display the question when a button is pressed
+3. Allow the user to answer the question in another textbox with a different document.getElementById
+4. Use a parameter to check whether their answer was correct
+5. Make an if statement that checks their answer to the actual answer
+6. Use an if statement that adds a point if they were correct
+7. Create a button that then cycles to the next question
+8. Repeat the process
+
+
+*/
+
+
+var questions = ["Which team are the Chiefs facing in this year's Super Bowl?  (do not include city)", "Which NFL team won the Super Bowl last year? (do not include city)", "Which MLB team holds the most World Series titles?(do not include city)", "Who holds the record for most home runs hit in MLB history?(first and last name)", "How many Super Bowl titles do the San Francisco 49ers have?(write answer as a number. ie. 1000)", "In the NBA, what city is the Thunder from?", "Which park is the oldest in the MLB?",  "Who is currently the oldest player in the NFL? (first and last name)", "Who is currently the oldest player in the MLB? (first and last name)", "Which current San Francisco 49er has the most Super Bowl rings? (first and last name)"];
+
+var answers = ["buccaneers", "chiefs", "yankees", "barry bonds", "5", "oklahoma city", "fenway park", "adam vinatieri", "fernando rodney", "jimmy garoppolo"];
+
+var index = -1;
+
+var score = 0
+
+
+// Create code in displayQuestion that will display the contents of the questions array, one 
+// element at a time. After the last element is displayed, the program should display the first
+// element again.
+                 
+function displayQuestion()
+{
+    index++;
+    
+    if (index >= questions.length)
+    
+    {
+        
+    index = 0;
+        
+    }
+    
+    document.getElementById("question").value = questions[index];    
+}
+
+
+// This function will first acquire the user's answer (from the textbox with the ID "answer". Then this function will pass that to the checkAnswer function (note: that there is a parameter.) The checkAnswer will return a true or a false. If that function returns true, then the score variable will increase by 1, and an alert should pop up saying "Correct" or something positive. If the checkAnswer function comes back false, then score doesn't increase but an alert should announce "incorect." or something similar. 
+
+function updateScore()
+    
+{
+
+    var userAns = document.getElementById("answer").value
+    
+    var isCorrect = checkAnswer(userAns)
+    
+    if ( isCorrect == true )
+        
+        {
+            score ++
+            alert( "Your score is: " + score)
+        }
+    else
+    {
+        alert("incorrect");
+    }
+
+}
+
+// This function takes a parameter which will be the users answer. If what the user has submitted the correct answer, this method should return true. Otherwise it should return false. 
+function checkAnswer(ans) // var ans = userAns
+{
+
+    ans = ans.toLowerCase()
+    
+    if (ans == answers[index])
+    {
+    return true
+    }
+        
+    else
+    {
+    return false;
+    }
+}
+
+
+
+</script>
+</head>
+<body > 
+<center>
+<h1>My Quiz</h1>
+    Click <a href = "index.html"> here </a> to return to my home page.
+
+<br/><br/>
+<table border = 3>
+	<tr>
+		<td>  	<input id="question" type="text" size="70" readonly = true/>	</td>
+	</tr>
+	<tr height = "12"><td></td>
+	</tr>
+	<tr>
+		<td>	<input id="answer" type="text" size="70" onfocusout="updateScore()"/> </td>
+	</tr>
+</table>
+<br/><br/>
+<input type="button" value="Next Question" onclick="displayQuestion()"/>
+</center>
+
+
+</body>
+</html>
